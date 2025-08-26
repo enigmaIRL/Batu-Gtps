@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batu GTPS</title>
+  <style>
+    /* Background animasi */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #0f0f0f, #222, #333, #111);
+      background-size: 400% 400%;
+      animation: gradientMove 20s ease infinite;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 40px;
+      background: linear-gradient(90deg, #00f0ff, #00ffa3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 3s infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px cyan; }
+      to { text-shadow: 0 0 25px #00ffa3; }
+    }
+
+    /* Card container */
+    .card {
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      max-width: 400px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.2);
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tombol */
+    .btn {
+      display: block;
+      margin: 15px auto;
+      padding: 14px 28px;
+      background: linear-gradient(90deg, #007bff, #00f0ff);
+      border: none;
+      border-radius: 12px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      width: 80%;
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+    }
+    .btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px cyan;
+    }
+
+    /* Popup animasi */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 25px;
+      border-radius: 18px;
+      text-align: center;
+      width: 85%;
+      max-width: 350px;
+      box-shadow: 0 0 25px cyan;
+      animation: popupAnim 0.4s ease;
+    }
+    @keyframes popupAnim {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .popup h2 {
+      margin-bottom: 20px;
+      color: cyan;
+    }
+    .popup .btn {
+      width: 90%;
+      margin: 12px auto;
+    }
+    .close-btn {
+      margin-top: 10px;
+      background: linear-gradient(90deg, #ff0000, #ff4d4d);
+      box-shadow: 0 0 15px red;
+    }
+
+    /* Emoji efek */
+    .emoji {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 12s linear infinite;
+      z-index: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Batu GTPS</h1>
+
+  <div class="card">
+    <a href="https://growsoft.cc/how-to-play" class="btn" target="_blank">Download</a>
+    <button class="btn" onclick="openPopup()">JOIN GRUB</button>
+  </div>
+
+  <!-- Popup -->
+  <div class="overlay" id="popupOverlay">
+    <div class="popup">
+      <h2>Pilih Grub</h2>
+      <a href="https://chat.whatsapp.com/JKz5JgxGg8l9jEx0HhgLQF" class="btn" target="_blank">Join WhatsApp</a>
+      <a href="https://discord.gg/VHkUfuPM" class="btn" target="_blank">Join Discord</a>
+      <button class="btn close-btn" onclick="closePopup()">Batal</button>
+    </div>
+  </div>
+
+  <script>
+    // Popup kontrol
+    function openPopup(){
+      document.getElementById("popupOverlay").style.display = "flex";
+    }
+    function closePopup(){
+      document.getElementById("popupOverlay").style.display = "none";
+    }
+
+    // Efek emoji
+    const emojis = ["🪨", "💎", "⚒️", "⛏️"];
+    setInterval(() => {
+      let emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.fontSize = (20 + Math.random()*25) + "px";
+      emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+      document.body.appendChild(emoji);
+      setTimeout(()=>emoji.remove(), 12000);
+    }, 700);
+  </script>
+</body>
+</html>
